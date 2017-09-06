@@ -11,11 +11,11 @@
 拉勾网登录页面： https://passport.lagou.com/login/login.html
 
 抓包分析一下
-![image](https://github.com/laichilueng/lagou_login/tree/master/image/1.png)
+![image](https://github.com/laichilueng/lagou_login/raw/master/image/1.png)
 
-![image](https://github.com/laichilueng/lagou_login/tree/master/image/2.png)
+![image](https://github.com/laichilueng/lagou_login/raw/master/image/2.png)
 
-![image](https://github.com/laichilueng/lagou_login/tree/master/image/3.png)
+![image](https://github.com/laichilueng/lagou_login/raw/master/image/3.png)
 
 
 **可以分析出模拟登陆需要的参数：**
@@ -39,7 +39,7 @@ HEADERS = {
 
 **那么如何去获取X-Anit-Forge-Token、X-Anit-Forge-Code这两个参数呢？**
 我们打开F12认真看登录页面的源代码
-![image](https://github.com/laichilueng/lagou_login/tree/master/image/4.png)
+![image](https://github.com/laichilueng/lagou_login/raw/master/image/4.png)
 可以在head标签里面可以找到这两个值，只需要用正则去匹配出来就可以了。
 
 
@@ -47,7 +47,7 @@ HEADERS = {
 从源码里可以看出，登录页面 加载的js并不多，那么就一个一个找吧。
 在 main.html_aio_f95e644.js ("https://img.lagou.com/passport/static/pkg/pc/page/login/main.html_aio_f95e644.js")
 这个js里面发现了加密的方法:
-![image](https://github.com/laichilueng/lagou_login/tree/master/image/5.png)
+![image](https://github.com/laichilueng/lagou_login/raw/master/image/5.png)
 首先对密码进行一次md5加密：password = md5(password)
 然后前后加上veenike这串字符: password = "veenike" + password + "veenike"
 最后再次进行md5加密：password = md5(password)
@@ -115,7 +115,7 @@ if __name__ == "__main__":
 ```
 
 控制台结果
-![image](https://github.com/laichilueng/lagou_login/tree/master/image/6.png)
+![image](https://github.com/laichilueng/lagou_login/raw/master/image/6.png)
 
 模拟登录以后便能获取到cookie，为爬虫做准备。代码拷贝就即能跑，不过拉勾网的登录校验随时会改变，若发现登录失败的可以提出issue，我会抽空更新代码。
 

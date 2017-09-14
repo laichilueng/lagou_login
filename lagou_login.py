@@ -50,7 +50,7 @@ def get_cookies():
     return requests.utils.dict_from_cookiejar(session.cookies)
 
 if __name__ == "__main__":
-    username = '13710004531'
-    passwd = 'laichilueng595'
+    username = 'xxxxx'
+    passwd = 'xxxxx'
     login(username, passwd)
     print(get_cookies())
